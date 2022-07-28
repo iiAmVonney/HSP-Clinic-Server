@@ -90,6 +90,6 @@ make sure to download the following
   
 ## Step 4 - Running the project
  
-1) Navigate to the project directory and run `npm i` if you havent already, to initialise the repositories and install all dependancies.
-2) Run `node app.js` to start the server
+1) Navigate to the project directory and run `npm i` in your terminal if you havent already, to initialise the repositories and install all dependancies.
+2) Therafter, run command `node app.js` to start the server
 3) Access server by navigating to http://localhost:3000/
