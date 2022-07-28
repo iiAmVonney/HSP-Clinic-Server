@@ -17,58 +17,58 @@ make sure to download the following
 2) Create a new schema and name it as you wish (e.g. hsp_group).
 3) Set the created schema to be the default and then create the following tables by running the associated commands below.
 4) Create addresses table: 
-  `CREATE TABLE ‘addresses’ (
-  ‘id’ int NOT NULL AUTO_INCREMENT,
-  ‘address_description’ longtext NOT NULL,
-  PRIMARY KEY (‘id’)
-  ) ENGINE=InnoDB AUTO_INCREMENT=97 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;`
+  <br/>`CREATE TABLE ‘addresses’ (
+  `<br/>`‘id’ int NOT NULL AUTO_INCREMENT,
+  `<br/>`‘address_description’ longtext NOT NULL,
+  `<br/>`PRIMARY KEY (‘id’)
+  `<br/>`) ENGINE=InnoDB AUTO_INCREMENT=97 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;`
 3) Create allergies table:
-   `CREATE TABLE ‘allergies’ (
-  ‘id’ int NOT NULL AUTO_INCREMENT,
-  ‘allergy_description’ longtext,
-  PRIMARY KEY (‘id’),
-  UNIQUE KEY ‘id_UNIQUE’ (‘id’)
-  ) ENGINE=InnoDB AUTO_INCREMENT=114 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;`
+   <br/>`CREATE TABLE ‘allergies’ (
+  `<br/>`‘id’ int NOT NULL AUTO_INCREMENT,
+  `<br/>`‘allergy_description’ longtext,
+  `<br/>`PRIMARY KEY (‘id’),
+  `<br/>` UNIQUE KEY ‘id_UNIQUE’ (‘id’)
+  `<br/>`) ENGINE=InnoDB AUTO_INCREMENT=114 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;`
 3) Create user_verifications table:
-   `CREATE TABLE ‘user_verifications’ (
-  ‘id’ bigint NOT NULL AUTO_INCREMENT,
-  ‘user_id’ bigint NOT NULL,
-  ‘unique_string’ varchar(80) NOT NULL,
-  PRIMARY KEY (‘id’),
-  UNIQUE KEY ‘user_id_UNIQUE’ (‘user_id’),
-  UNIQUE KEY ‘unique_string_UNIQUE’ (‘unique_string’)
-  ) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;`
+   <br/>`CREATE TABLE ‘user_verifications’ (
+  `<br/>`‘id’ bigint NOT NULL AUTO_INCREMENT,
+  `<br/>`‘user_id’ bigint NOT NULL,
+  `<br/>`‘unique_string’ varchar(80) NOT NULL,
+  `<br/>`PRIMARY KEY (‘id’),
+  `<br/>`UNIQUE KEY ‘user_id_UNIQUE’ (‘user_id’),
+  `<br/>`UNIQUE KEY ‘unique_string_UNIQUE’ (‘unique_string’)
+  `<br/>`) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;`
 4) create users table:
-   `CREATE TABLE ‘users’ (
-  ‘id’ bigint NOT NULL AUTO_INCREMENT,
-  ‘first_name’ varchar(45) NOT NULL,
-  ‘last_name’ varchar(45) NOT NULL,
-  ‘student_number’ varchar(13) NOT NULL,
-  ‘email’ varchar(50) NOT NULL,
-  ‘password’ varchar(80) NOT NULL,
-  ‘phone_number’ varchar(13) NOT NULL,
-  ‘allergies’ varchar(255) DEFAULT NULL,
-  ‘address’ varchar(255) DEFAULT NULL,
-  ‘gender’ char(1) DEFAULT NULL,
-  ‘DOB’ date DEFAULT NULL,
-  ‘validated’ int NOT NULL DEFAULT '0',
-  PRIMARY KEY (‘id’),
-  UNIQUE KEY ‘id’ (‘id’),
-  UNIQUE KEY ‘email’ (‘email’),
-  UNIQUE KEY ‘student_number’ (‘student_number’)
-  ) ENGINE=InnoDB AUTO_INCREMENT=96 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;`
+   <br/>`CREATE TABLE ‘users’ ( 
+  `<br/>`‘id’ bigint NOT NULL AUTO_INCREMENT,
+  `<br/>`‘first_name’ varchar(45) NOT NULL,
+  `<br/>`‘last_name’ varchar(45) NOT NULL,
+  `<br/>`‘student_number’ varchar(13) NOT NULL,
+  `<br/>`‘email’ varchar(50) NOT NULL,
+  `<br/>`‘password’ varchar(80) NOT NULL,
+  `<br/>`‘phone_number’ varchar(13) NOT NULL,
+  `<br/>`‘allergies’ varchar(255) DEFAULT NULL,
+  `<br/>`‘address’ varchar(255) DEFAULT NULL,
+  `<br/>`‘gender’ char(1) DEFAULT NULL,
+  `<br/>`‘DOB’ date DEFAULT NULL,
+  `<br/>`‘validated’ int NOT NULL DEFAULT '0',
+  `<br/>`PRIMARY KEY (‘id’),
+  `<br/>`UNIQUE KEY ‘id’ (‘id’),
+  `<br/>`UNIQUE KEY ‘email’ (‘email’),
+  `<br/>`UNIQUE KEY ‘student_number’ (‘student_number’)
+  `<br/>`) ENGINE=InnoDB AUTO_INCREMENT=96 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;`
 
 ## Step 2 - Setting up the Environment variables (.env)
 
 1) Create a new file in the project directory and name it `.env`
 2) Type the following in the .env file:
-  ` DB_PASS=<value>
-    DB_USER=<value>
-    DB_PORT=<value>
-    DB_HOST=<value>
-    DB=<value>
-    SENDGRID_API_KEY=<value>
-    TOKEN_SECRET=<value>
+  <br/>` DB_PASS=<value>`<br/>`
+    DB_USER=<value>`<br/>`
+    DB_PORT=<value>`<br/>`
+    DB_HOST=<value>`<br/>`
+    DB=<value>`<br/>`
+    SENDGRID_API_KEY=<value>`<br/>`
+    TOKEN_SECRET=<value>`<br/>`
     REFRESH_TOKEN_SECRET=<value>`. No commas, new-line delimited; replace `<value>` with the respective value. This is to ensure that sensitive information isnt visible within the source code... and why I am not displaying values here either, contact me directly for the `SENDGRID_API_KEY`. Ref 'Google Dorking .env'.
 
 ## Step 3 - Cloning the Repository
@@ -89,6 +89,10 @@ make sure to download the following
 1) Before making any changes to the source code make sure you are not in the `main` branch!
 2) Run `git status` to ascertain what branch you are in.
 3) If you are not in your branch, create your branch using `git checkout -b <your-branch-name>` to create a branch if you dont have one already. If you have created a branch already you can check it out to work on by using command `git checkout <your-branch-name>` in your terminal.
+4) Commit and Push your changes to your branch (NOT `main`)
+5) Please get in contact with others' to peer review your additions before merging to main
+6) Kindly contact me before merging to main :); All merge conflicts must be resolved!
+
   
 ## Step 4 - Running the project
  
