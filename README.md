@@ -58,19 +58,7 @@ make sure to download the following
   UNIQUE KEY ‘student_number’ (‘student_number’)
   ) ENGINE=InnoDB AUTO_INCREMENT=96 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;`
 
-## Step 2 - Cloning the Repository
-
-1) In your terminal navigate to the directory you wish to clone the project to 
-2) Execute the following command: `git clone https://github.com/iiAmVonney/HSP-Clinic-Server.git`
-3) Navigate into the cloned project directory; you can confirm if the directory is correct if it has a hidden '.git' file (enable 'show hidden files' on your file explorer if you havent already) and Open Visual Studio Code in the directory 
-    ### DO NOT make any edits yet!!
-5) In your terminal run the `git status` command to ensure that you have cloned the repo succesfuly and are currently in the 'main' branch.
-6) Before making any edits, run the command `git checkout -b <your-branch-name>` in your terminal and replace `<your-branch-name>` with what you would like to name your branch.
-7) Confirm that you are now in your new branch by running the `git status` command in your terminal.
-8) After confirming that you are in your branch run the command `npm i` in you terminal.
-
-  
-## Step 3 - Setting up the Environment variables (.env)
+## Step 2 - Setting up the Environment variables (.env)
 
 1) Create a new file in the project directory and name it `.env`
 2) Type the following in the .env file:
@@ -83,6 +71,22 @@ make sure to download the following
     TOKEN_SECRET=<value>
     REFRESH_TOKEN_SECRET=<value>`. No commas, new-line delimited; replace `<value>` with the respective value. This is to ensure that sensitive information isnt visible within the source code... and why I am not displaying values here either, contact me directly for the `SENDGRID_API_KEY`. Ref Google Dorking.
 
+## Step 3 - Cloning the Repository
+
+1) In your terminal navigate to the directory you wish to clone the project to 
+2) Execute the following command: `git clone https://github.com/iiAmVonney/HSP-Clinic-Server.git`
+3) Navigate into the cloned project directory; you can confirm if the directory is correct if it has a hidden '.git' file (enable 'show hidden files' on your file explorer if you havent already) and Open Visual Studio Code in the directory 
+    ### DO NOT make any edits yet!!
+5) In your terminal run the `git status` command to ensure that you have cloned the repo succesfuly and are currently in the 'main' branch.
+6) Before making any edits, run the command `git checkout -b <your-branch-name>` in your terminal and replace `<your-branch-name>` with what you would like to name your branch.
+7) Confirm that you are now in your new branch by running the `git status` command in your terminal.
+8) After confirming that you are in your branch run the command `npm i` in you terminal.
+
+## Step 5 - NB!! Making Changes
+
+1) Before making any changes to the source code make sure you are not in the `main` branch!
+2) Run `git status` to ascertain what branch you are in. 
+3) If you are not in your branch, create your branch using `git checkout -b <your-branch-name>` to create a branch if you dont have one already. If you have created a branch already you can check it out to work on by using command `git checkout <your-branch-name>` in your terminal.
   
 ## Step 4 - Running the project
  
