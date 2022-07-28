@@ -79,13 +79,15 @@ make sure to download the following
     ### DO NOT make any edits yet!!
 5) In your terminal run the `git status` command to ensure that you have cloned the repo succesfuly and are currently in the 'main' branch.
 6) Before making any edits, run the command `git checkout -b <your-branch-name>` in your terminal and replace `<your-branch-name>` with what you would like to name your branch.
-7) Confirm that you are now in your new branch by running the `git status` command in your terminal.
+7) Confirm that you are now in your new branch by running the `git status` command in your terminal. You can also view the branch you are currently working in, in the BOTTOM LEFT CORNER of VS Code: 
+![image](https://user-images.githubusercontent.com/86348684/181617016-17c657b1-ff43-40c6-87ec-77d27ebf9052.png)
+
 8) After confirming that you are in your branch run the command `npm i` in you terminal.
 
 ## Step 5 - NB!! Making Changes
 
 1) Before making any changes to the source code make sure you are not in the `main` branch!
-2) Run `git status` to ascertain what branch you are in. 
+2) Run `git status` to ascertain what branch you are in.
 3) If you are not in your branch, create your branch using `git checkout -b <your-branch-name>` to create a branch if you dont have one already. If you have created a branch already you can check it out to work on by using command `git checkout <your-branch-name>` in your terminal.
   
 ## Step 4 - Running the project
@@ -93,3 +95,5 @@ make sure to download the following
 1) Navigate to the project directory and run `npm i` in your terminal if you havent already, to initialise the repositories and install all dependancies.
 2) Therafter, run command `node app.js` to start the server
 3) Access server by navigating to http://localhost:3000/
+
+
