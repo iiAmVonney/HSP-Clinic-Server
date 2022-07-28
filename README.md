@@ -69,7 +69,7 @@ make sure to download the following
     DB=<value>
     SENDGRID_API_KEY=<value>
     TOKEN_SECRET=<value>
-    REFRESH_TOKEN_SECRET=<value>`. No commas, new-line delimited; replace `<value>` with the respective value. This is to ensure that sensitive information isnt visible within the source code... and why I am not displaying values here either, contact me directly for the `SENDGRID_API_KEY`. Ref Google Dorking.
+    REFRESH_TOKEN_SECRET=<value>`. No commas, new-line delimited; replace `<value>` with the respective value. This is to ensure that sensitive information isnt visible within the source code... and why I am not displaying values here either, contact me directly for the `SENDGRID_API_KEY`. Ref 'Google Dorking .env'.
 
 ## Step 3 - Cloning the Repository
 
