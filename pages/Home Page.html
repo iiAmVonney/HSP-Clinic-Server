@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="IIE MSA CAMPUS CLINIC">
+    <link rel="stylesheet" href="./css/style.css">
+
+	<!-- JQuery -->
+	<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+		<!-- Custom JS
+	<script src="js\createAccount.js"></script> -->
+		<!-- Toastr JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+		<!-- Toastr CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+
+
+		<title>IIE MSA CAMPUS CLINIC | Home Page</title>
+	</head>
+
+<body>
+		<header>
+			<div class="container">
+
+				<div class="navbar">
+					<a href="/">
+						<img href="/" src="./img/HSP Logo.png" class="HSP-logo">
+						</a>
+		<nav>
+						<ul id ="ListMenu">
+						  <li>	<a href="/">	Home </a></li>
+						  <li class = "current">	<a href="/logIn">	Log In	</a></li>
+						  <li>	<a href="/Contact">	Contact	</a></li>
+						</ul>
+					  </nav>
+        <img src="./img/Hamburger Icon.png" class="menu-icon" onclick="dropdownmenu()">
+				</div>
+
+				<div class="Home-Container">
+					<section class="Home-Section-1">
+						<div class = Information style="text-align: center">
+										<span>About Us</span>
+										<p>HSP Group SA was established in 1995 (as Health and Safety Professionals) and continues to grow,
+											setting the benchmark in Occupational Health in South Africa, as we merge medicine and industry.</p>
+											<br>
+										<p>Our Goal is to look after the well being of every IIE MSA Student that walks through our doors.</p>
+						</div>
+					</section>
+
+					<section class="Home-Section-2" style="text-align: center">
+						<div class = Information>
+							<span>Services Offered</span>
+							<p>Family Planning (Contraceptives), </p>
+							<p>General Wellness Check Up (BP, Monitoring of weight/BMI),</p>
+							<p>HIV Testing and Counseling,</p>
+							<p>Treatment of minor injuries</p>
+							<p>Pregnancy tests</p>
+						</div>
+					</section>
+
+					<section class="Home-Section-3" >
+						<div class = Information style="text-align: center">
+							<span>Operating Hours :</span>
+							<p>Monday	-	Friday</p>
+							<p>10:00	-	14:00</p><br>
+							<span>Doctors :</span>
+							<p>Doctors Available 1st Tuesday of the month from</p>
+							<p>12:30	-	13:30</p>
+						</div>
+					</section>
+
+					<section class="Home-Section-4">
+						<a  href="Log In Page.html">
+						<button type="submit" class="HomePageRequestbtn">Request Appointment</button>
+						</a><br><br>
+					</section>
+				</div>
+
+			</div>
+
+		</header>
+	</body>
+
+	<script>
+
+	  var listmenu = document.getElementById("ListMenu");
+	  listmenu.style.maxHeight="0px";
+
+	  function dropdownmenu(){
+	    if(listmenu.style.maxHeight=="0px")
+	    {
+	      listmenu.style.maxHeight="130px";
+	    }
+	    else
+	    {
+	      listmenu.style.maxHeight="0px";
+	    }
+	  }
+
+	  $(document).ready(function(){
+		
+		
+		var cookies = document.cookie.split('; ');
+
+    
+cookies.forEach(cookie => {
+	let pairs = cookie.split('=');
+	if(pairs[0]=='message'){
+		if(pairs[1]=='success')
+		{
+			toastr.options = {
+				"closeButton": true,
+				"debug": false,
+				"newestOnTop": false,
+				"progressBar": true,
+				"preventDuplicates": false,
+				"onclick": null,
+				"showDuration": "100",
+				"hideDuration": "1000",
+				"timeOut": "5000",
+				"extendedTimeOut": "1000",
+				"showEasing": "swing",
+				"hideEasing": "linear",
+				"showMethod": "show",
+				"hideMethod": "hide"
+			};
+		
+
+			toastr.success('An email has been sent to your account. Please verify before login in.');
+		}
+
+	}
+});
+
+
+	  });
+
+	</script>.
+
+  <footer>
+		<p>HSP GROUP, Copyright &copy; 2022</p>
+	</footer>
+
+</html>

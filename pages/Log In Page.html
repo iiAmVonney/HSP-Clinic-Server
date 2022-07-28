@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="IIE MSA CAMPUS CLINIC">
+    <link rel="stylesheet" href="./css/style.css">
+
+		<!-- Toastr CSS -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+	
+	
+		<title>IIE MSA CAMPUS CLINIC | Log In Page</title>
+	</head>
+
+	<body>
+
+		<header>
+			<div class="container">
+				<div class="navbar">
+
+				<a href="/">
+				<img href="/" src="./img/HSP Logo.png" class="HSP-logo">
+				</a>
+				
+				<nav>
+					<ul id ="ListMenu">
+					  <li>	<a href="/">	Home </a></li>
+					  <li class = "current">	<a href="/logIn">	Log In	</a></li>
+					  <li>	<a href="/Contact">	Contact	</a></li>
+					</ul>
+				  </nav>
+
+        <img src="./img/Hamburger Icon.png" class="menu-icon" onclick="dropdownmenu()">
+				</div>
+
+
+				<div class="SignInForm">
+
+					<div class = Information style="text-align: center">
+
+							<h3>Log In to Your Account</h3>
+							<br>
+
+							<form id="LogIn" method="POST" action="http://localhost:3000/Login">
+								<label><b>Student Number : </b></label><br>
+								<input name="email" type="text" title="LogInEmail" placeholder="ST10101234@imconnect.co.za" required/><br><br>
+								<label><b>Password : </b></label><br>
+								<input name="password" type="password" id="SignInpassword" title="LogInPassword" placeholder="********" required/><br><br>
+								<input type="checkbox" onclick="ShowPassword()">Show Password<br><br>
+    						<button type="submit" class="LogInbtn">Login</button><br><br>
+
+    						<a class="ForgotPassword" href="Forgot Password.html">Forgot Password?</a>
+								<br><br>
+								Create an Account:
+								<br>
+								<a class="ForgotPassword" href="Create Account Page.html">Create Account</a>
+
+							</form>
+
+					</div>
+
+				</div>
+
+
+			</div>
+		</header>
+
+
+
+
+
+	</body>
+
+			<!-- JQuery -->
+		<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+			<!-- Toastr JS -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+			<!-- Custom JS -->
+		<script src="./js/logIn.js"></script>
+
+	<script>
+	  var listmenu = document.getElementById("ListMenu");
+	  listmenu.style.maxHeight="0px";
+	  function dropdownmenu(){
+	    if(listmenu.style.maxHeight=="0px")
+	    {
+	      listmenu.style.maxHeight="130px";
+	    }
+	    else
+	    {
+	      listmenu.style.maxHeight="0px";
+	    }
+	  }
+		function ShowPassword() {
+  var x = document.getElementById("SignInpassword");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+	</script>
+
+
+  <footer>
+		<p>HSP GROUP, Copyright &copy; 2022</p>
+	</footer>
+
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="IIE MSA CAMPUS CLINIC">
+    <link rel="stylesheet" href="./css/style.css">
+	<!-- Toastr CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+	
+		<title>IIE MSA CAMPUS CLINIC | User Signed In Page</title>
+	</head>
+	<body>
+		<header>
+			<div class="container">
+				<div class="navbar">
+					<a href="/">
+						<img href="/" src="./img/HSP Logo.png" class="HSP-logo">
+						</a>
+		<nav>
+					<ul id ="ListMenu">
+					  <li>	<a href="/">	Home </a></li>
+					  <li class = "current">	<a href="/logIn">	Log In	</a></li>
+					  <li>	<a href="/Contact">	Contact	</a></li>
+					</ul>
+				  </nav>
+        <img src="./img/Hamburger Icon.png" class="menu-icon" onclick="dropdownmenu()">
+				</div>
+
+				<div class="User Details Form">
+					<div class = Information style="text-align: center">
+						<button type="submit" class="UserSignedInRequestbtn">Request Appointment</button><br><br><br><br>
+							<h3>User Details</h3>
+							<br>
+							<form id="UserDetails" method="get">
+							<div class="Signed-In-Container">
+
+								<section class="Signed-In-Section-1">
+								<label><b>Student Number : </b></label><br>
+								<input type="text" title="SignedInStudentNumber" placeholder="ST10101234" readonly/><br><br>
+							</section>
+
+							<section class="Signed-In-Section-2">
+								<label><b>First Name : </b></label><br>
+								<input type="text" title="SignedInFirstName" placeholder="John" /><br><br>
+							</section>
+
+							<section class="Signed-In-Section-3">
+								<label><b>Last Name : </b></label><br>
+								<input type="text" title="SignedInLastName" placeholder="Smith" /><br><br>
+							</section>
+
+							<section class="Signed-In-Section-4">
+								<label><b>Address : </b></label><br>
+								<input type="text" title="SignedInAddress" placeholder="144 Peter Road" /><br><br>
+							</section>
+
+							<section class="Signed-In-Section-5">
+								<label><b>Telephone Number : </b></label><br>
+								<input type="text" title="SignedInStudentCellNumber" placeholder="0721234567" /><br><br>
+							</section>
+
+							<section class="Signed-In-Section-6">
+								<label><b>Gender : </b></label><br>
+
+
+								<div class="radiogroup">
+  							<input class="radiogroup-input" type="radio" value="Option1" name="SignedInGender" id="Option1">
+								<label class="radiogroup-label" for="Option1">Male</label>
+
+								<input class="radiogroup-input" type="radio" value="Option2" name="SignedInGender" id="Option2">
+								<label class="radiogroup-label" for="Option2">Female</label>
+
+							  </div>
+
+
+							</section>
+
+							<section class="Signed-In-Section-7">
+								<label><b>Date of Birth : </b></label><br>
+								<input class="birthdate" type="date" title="SignedInDateOfBirth" placeholder="YYYY-MM-DD" data-date-split-input="true" /><br><br>
+							</section>
+
+							<section class="Signed-In-Section-8">
+								<label><b>Allergies : </b></label><br>
+								<input type="text" title="SignedInAllergies" placeholder="Pollen Allergy"/><br><br>
+							</section>
+
+							<section class="Signed-In-Section-9">
+								<label><b>E-mail Address : </b></label><br>
+								<input type="text" title="SignedInEmail" placeholder="ST10101234@imconnect.edu.za" /><br><br>
+							</section>
+
+							<section class="Signed-In-Section-10">
+								<label><b>Password : </b></label><br>
+								<input type="password" id="password" title="SignedInPassword" placeholder="********" /><br><br>
+								<input type="checkbox" onclick="ShowPassword()">Show Password<br><br>
+							</section>
+
+							<section class="Signed-In-Section-11">
+								<label><b>Confirm Password : </b></label><br>
+								<input type="password" id="passwordconfirm" title="SignedInConfirmPassword"/><br><br>
+								<input type="checkbox" onclick="ShowPasswordConfirm()">Show Password<br><br>
+							</section>
+
+							<section class="Signed-In-Section-12">
+    						<button type="submit" class="UserSignedInSubmitbtn">Confirm</button><br><br><br><br>
+							</section>
+
+							<section class="Signed-In-Section-13">
+								<button id="SignOut" type="submit" class="UserSignOutbtn" formaction="http://localhost:3000/SignOut" >Sign Out</button><br><br><br><br>
+							</section>
+
+						</div>
+							</form>
+					</div>
+
+				</div>
+
+
+			</div>
+		</header>
+
+
+
+
+
+	</body>
+
+
+	<!-- JQuery -->
+	<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+		<!-- Toastr JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+	
+	<script>
+
+
+		
+document.addEventListener("DOMContentLoaded", function(){
+    
+    // document.getElementById("LogIn")
+    // .addEventListener("submit", handleSignIn);
+
+    // document.getElementById("LogIn")
+    // .addEventListener("submit", handleSignIn);
+
+    var cookies = document.cookie.split('; ');
+
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": true,
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "100",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "show",
+        "hideMethod": "hide"
+    };
+
+    
+    cookies.forEach(cookie => {
+        let pairs = cookie.split('=');
+        
+        if(pairs[0]=='user-name'){
+            
+			toastr.success('Welcome back, '+pairs[1]+'!');
+                
+        }
+    });
+
+		
+
+});
+
+
+	  var listmenu = document.getElementById("ListMenu");
+	  listmenu.style.maxHeight="0px";
+	  function dropdownmenu(){
+	    if(listmenu.style.maxHeight=="0px")
+	    {
+	      listmenu.style.maxHeight="130px";
+	    }
+	    else
+	    {
+	      listmenu.style.maxHeight="0px";
+	    }
+	  }
+
+		function ShowPassword() {
+  var x = document.getElementById("password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+
+function ShowPasswordConfirm() {
+var x = document.getElementById("passwordconfirm");
+if (x.type === "password") {
+x.type = "text";
+} else {
+x.type = "password";
+}
+}
+
+function confirmSignOut() {
+         let confirmSignOut = confirm("User being Signed Out");
+         if (confirmSignOut) {
+					 /*Action For CONFRIMING SIGN OUT back to HOME PAGE*/
+
+			
+			console.log('signed out');
+
+         } else {
+					 /*Action For CANCELLING SIGN OUT*/
+         }
+       }
+
+
+	</script>
+
+
+  <footer>
+		<p>HSP GROUP, Copyright &copy; 2022</p>
+	</footer>
+
+</html>
