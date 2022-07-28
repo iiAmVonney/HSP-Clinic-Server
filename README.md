@@ -8,8 +8,7 @@ make sure to download the following
 1) git (https://github.com/git-guides/install-git)
 2) node.js (https://nodejs.org/)
 3) Visual Studio Code (https://code.visualstudio.com/)
-4) MySQL Community Download (https://dev.mysql.com/downloads/installer/)
-5) MySQL Workbench (https://dev.mysql.com/downloads/workbench/)
+4) MySQL Community Download (use Developer Default option within setup - includes Workbench) (https://dev.mysql.com/downloads/installer/)
 
 ## Step 1 - Setting up the SQL Data Base
 
