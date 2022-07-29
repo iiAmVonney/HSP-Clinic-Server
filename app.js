@@ -40,7 +40,7 @@ app.use(
 
 
 app.use(cookieParser());
-app.use('/',express.static('public'));
+app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -215,8 +215,8 @@ app.post('/SignUp', (req, res)=>{
                                 httpOnly: false,
                                 maxAge:3000} );
                             console.log('before redirect');
+                            
                             return res.redirect('/');
-                            console.log('after redirect');
 
                         });
 
@@ -243,11 +243,12 @@ app.get('/verify/:userId/:uinqueString', (req, res)=>{
 
     connection.query("SELECT * FROM user_verifications where user_id = ?", userId, (error, results, fields)=>{
         if (error) 
-{
-    console.log(err);
-    res.sendStatus(500);
-    return;
-}
+        {
+            console.log(err);
+            res.sendStatus(500);
+            return;
+        }
+        console.log('UV: ',results[0]);
         console.log('hashed Unique string',results[0]['unique_string']);
         const uvID = results[0]['id'];
         console.log('id before (uv)',uvID);
@@ -273,21 +274,25 @@ app.get('/verify/:userId/:uinqueString', (req, res)=>{
                         res.sendStatus(500);
                         return;
                     }
+                    console.log('GOING TO VERIFY (INSCOPE)');
                 });
-
+                console.log('GOING TO VERIFY');
                 //user has been validated and user_validation record removed
-                res.redirect(path.join(__dirname, './public/Verify.html'));
+                res.redirect('/Verified');
             })
         }else{
             //else serve up un unsuccessful page
             console.log('validation was UNsuccesful');
-            res.redirect(path.join(__dirname,'./public/Denial.html'));
+            res.redirect('/Denied');
         }
 
     });
 
 });
 
+app.get('/Verified',(req,res)=>{
+    res.sendFile(path.join(__dirname,'./pages/Verify.html'));
+});
 
 app.get('/Login', (req, res) =>{
     res.sendFile(path.join(__dirname,'./pages/Log In Page.html'));
@@ -427,5 +432,9 @@ app.get('/SignOut', (req, res)=>{
 
 app.get('/Contact', (req, res)=>{
     res.sendFile(path.join(__dirname,'./pages/Contact Page.html'))
+});
+
+app.get('/Register', (req, res)=>{
+    res.sendFile(path.join(__dirname,'./pages/Create Account Page.html'))
 });
 
