@@ -93,18 +93,19 @@
 
 							<section class="Signed-In-Section-10">
 								<label><b>Password : </b></label><br>
-								<input type="password" id="password" title="SignedInPassword" placeholder="********" /><br><br>
+								<input type="password" id="password" title="SignedInPassword" placeholder="********" oninput="ValidatePasswords()"/><br><br>
 								<input type="checkbox" onclick="ShowPassword()">Show Password<br><br>
 							</section>
 
 							<section class="Signed-In-Section-11">
 								<label><b>Confirm Password : </b></label><br>
-								<input type="password" id="passwordconfirm" title="SignedInConfirmPassword"/><br><br>
+								<input type="password" id="passwordconfirm" title="SignedInConfirmPassword" oninput="ValidatePasswords()"/><br><br>
 								<input type="checkbox" onclick="ShowPasswordConfirm()">Show Password<br><br>
 							</section>
 
 							<section class="Signed-In-Section-12">
-    						<button type="submit" class="UserSignedInSubmitbtn">Confirm</button><br><br><br><br>
+    						<button type="submit" id="SubmitButton" class="UserSignedInSubmitbtn" style='visibility:hidden'>Confirm</button><br><br><br><br>
+							<label><b>Note : CONFRIM Button will appear when PASSWORDS match!</b></label><br>
 							</section>
 
 							<section class="Signed-In-Section-13">
@@ -211,7 +212,8 @@ x.type = "password";
 }
 }
 
-function confirmSignOut() {
+function confirmSignOut() 
+{
          let confirmSignOut = confirm("User being Signed Out");
          if (confirmSignOut) {
 					 /*Action For CONFRIMING SIGN OUT back to HOME PAGE*/
@@ -223,6 +225,18 @@ function confirmSignOut() {
 					 /*Action For CANCELLING SIGN OUT*/
          }
        }
+function ValidatePasswords()
+{
+	var x = document.getElementById("password").value;
+	var y = document.getElementById("passwordconfirm").value;
+	// If Not same return False.
+  if (x != y)
+	{
+		document.getElementById("SubmitButton").style.visibility = "hidden";
+  }else{
+		document.getElementById("SubmitButton").style.visibility = "visible";
+	}
+}
 
 
 	</script>

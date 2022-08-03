@@ -87,13 +87,13 @@
 
 									<section class="Sign-In-Section-10">
 										<label><b>Password : </b></label><br>
-										<input name="password" type="password" id="password" title="CreateAccountPassword" placeholder="********" required/><br><br>
+										<input name="password" type="password" id="password" title="CreateAccountPassword" placeholder="********"  oninput="ValidatePasswords()"/><br><br>
 										<input type="checkbox" onclick="ShowPassword()">Show Password<br><br>
 									</section>
 
 									<section class="Sign-In-Section-11">
 										<label><b>Confirm Password : </b></label><br>
-										<input type="password" id="passwordconfirm" title="CreateAccountConfirmPassword" placeholder="********" required/><br><br>
+										<input type="password" id="passwordconfirm" title="CreateAccountConfirmPassword" placeholder="********" required oninput="ValidatePasswords()"/><br><br>
 										<input type="checkbox" onclick="ShowPasswordConfirm()">Show Password<br><br>
 									</section>
 
@@ -102,7 +102,8 @@
 									</section>
 
 									<section class="Sign-In-Section-13">
-    								<button type="submit" class="CreateAccountSubmitbtn">Create</button><br><br>
+    								<button type="submit" id="SubmitButton" class="CreateAccountSubmitbtn" style='visibility:hidden'>Create</button><br><br>
+									<label><b>Note : CREATE Button will appear when PASSWORDS match!</b></label><br>
 									</section>
 							</div>
 						</form>
@@ -150,6 +151,19 @@ x.type = "text";
 } else {
 x.type = "password";
 }
+}
+
+function ValidatePasswords()
+{
+	var x = document.getElementById("password").value;
+	var y = document.getElementById("passwordconfirm").value;
+	// If Not same return False.
+  if (x != y)
+	{
+		document.getElementById("SubmitButton").style.visibility = "hidden";
+  }else{
+		document.getElementById("SubmitButton").style.visibility = "visible";
+	}
 }
 	</script>
 
