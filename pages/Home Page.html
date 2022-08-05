@@ -99,11 +99,11 @@
 	  }
 
 	  $(document).ready(function(){
-		
-		
+
+
 		var cookies = document.cookie.split('; ');
 
-    
+
 cookies.forEach(cookie => {
 	let pairs = cookie.split('=');
 	if(pairs[0]=='message'){
@@ -125,7 +125,7 @@ cookies.forEach(cookie => {
 				"showMethod": "show",
 				"hideMethod": "hide"
 			};
-		
+
 
 			toastr.success('An email has been sent to your account. Please verify before login in.');
 		}
@@ -136,7 +136,7 @@ cookies.forEach(cookie => {
 
 	  });
 
-	</script>.
+	</script>
 
   <footer>
 		<p>HSP GROUP, Copyright &copy; 2022</p>

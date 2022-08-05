@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="IIE MSA CAMPUS CLINIC">
+    <link rel="stylesheet" href="./css/style.css">
+		<title>IIE MSA CAMPUS CLINIC | Bookings Page</title>
+	</head>
+
+	<body>
+		<div class="container">
+
+			<div class="navbar">
+				<img src="./img/HSP Logo.png" class="HSP-logo">
+				<nav>
+					<ul id ="ListMenu">
+						<li>	<a href="Home Page.html">	Home </a></li>
+						<li class = "current">	<a href="Log In Page.html">	Log In	</a></li>
+						<li>	<a href="Contact Page.html">	Contact	</a></li>
+					</ul>
+			</nav>
+			<img src="./img/Hamburger Icon.png" class="menu-icon" onclick="dropdownmenu()">
+			</div>
+
+			<!-- Calendly inline widget begin -->
+<div class="calendly-inline-widget" data-url="https://calendly.com/st10108602?primary_color=24a4ac" style="min-width:320px;height:630px;"></div>
+<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<!-- Calendly inline widget end -->
+
+	</body>
+
+
+	<script>
+
+	var listmenu = document.getElementById("ListMenu");
+		  listmenu.style.maxHeight="0px";
+		  function dropdownmenu(){
+		    if(listmenu.style.maxHeight=="0px")
+		    {
+		      listmenu.style.maxHeight="130px";
+		    }
+		    else
+		    {
+		      listmenu.style.maxHeight="0px";
+		    }
+		  }
+
+	</script>
+
+	<footer>
+			<p>HSP GROUP, Copyright &copy; 2022</p>
+		</footer>
+</html>
