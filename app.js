@@ -59,7 +59,7 @@ app.post('/SignUp', (req, res)=>{
     //check if email or st_number already exists in the DB
     connection.query('SELECT count(*) as count FROM users WHERE email = ? OR student_number = ?', [req.body.email, req.body.student_number], function (error, results, fields) {
         if (error) {
-            console.log(err);
+            console.log(error);
             res.status(500).json({
                 message: 'Something went wrong querying the database for existing users',
                 status: 500
