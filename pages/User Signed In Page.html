@@ -107,8 +107,8 @@
 							</section>
 
 							<section class="Signed-In-Section-12">
-    						<button type="submit" id="SubmitButton" class="UserSignedInSubmitbtn" style='visibility:hidden'>Confirm</button><br><br><br><br>
-							<label><b>Note : CONFRIM Button will appear when PASSWORDS match!</b></label><br>
+    						<button type="submit" id="SubmitButton" class="UserSignedInSubmitbtn" disabled>Confirm</button><br><br><br><br>
+							<label><b>Note : CONFRIM Button will be ENABLED when PASSWORDS match!</b></label><br>
 							</section>
 
 							<section class="Signed-In-Section-13">
@@ -228,16 +228,16 @@ function confirmSignOut()
 					 /*Action For CANCELLING SIGN OUT*/
          }
        }
-function ValidatePasswords()
+	   function ValidatePasswords()
 {
 	var x = document.getElementById("password").value;
 	var y = document.getElementById("passwordconfirm").value;
 	// If Not same return False.
   if (x != y)
 	{
-		document.getElementById("SubmitButton").style.visibility = "hidden";
+		document.getElementById("SubmitButton").disabled = true;
   }else{
-		document.getElementById("SubmitButton").style.visibility = "visible";
+		document.getElementById("SubmitButton").disabled = false;
 	}
 }
 

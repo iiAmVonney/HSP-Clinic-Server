@@ -102,8 +102,8 @@
 									</section>
 
 									<section class="Sign-In-Section-13">
-    								<button type="submit" id="SubmitButton" class="CreateAccountSubmitbtn" style='visibility:hidden'>Create</button><br><br>
-									<label><b>Note : CREATE Button will appear when PASSWORDS match!</b></label><br>
+    								<button type="submit" id="SubmitButton" class="CreateAccountSubmitbtn" disabled>Create</button><br><br>
+									<label><b>Note : CREATE Button will be ENABLED when PASSWORDS match!</b></label><br>
 									</section>
 							</div>
 						</form>
@@ -160,9 +160,9 @@ function ValidatePasswords()
 	// If Not same return False.
   if (x != y)
 	{
-		document.getElementById("SubmitButton").style.visibility = "hidden";
+		document.getElementById("SubmitButton").disabled = true;
   }else{
-		document.getElementById("SubmitButton").style.visibility = "visible";
+		document.getElementById("SubmitButton").disabled = false;
 	}
 }
 	</script>
