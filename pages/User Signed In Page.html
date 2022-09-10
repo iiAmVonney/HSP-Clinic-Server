@@ -13,27 +13,34 @@
 	<body>
 		<header>
 			<div class="container">
-				<div class="navbar">
-					<a href="/">
-						<img href="/" src="./img/HSP Logo.png" class="HSP-logo">
-						</a>
-		<nav>
-					<ul id ="ListMenu">
-					  <li>	<a href="/">	Home </a></li>
-					  <li class = "current">	<a href="/logIn">	Log In	</a></li>
-					  <li>	<a href="/Contact">	Contact	</a></li>
-					</ul>
-				  </nav>
-        <img src="./img/Hamburger Icon.png" class="menu-icon" onclick="dropdownmenu()">
-				</div>
 
-				<div class="User Details Form">
-					<div class = Information style="text-align: center">
-						<a  href="/Bookings">
-						<button type="submit" class="UserSignedInRequestbtn">Request Appointment</button>
-					</a>
+				<nav class="navbar">
+					<div class="branding">
+						<img href="/" src="./img/HSP Logo.png" class="HSP-logo">
+					</div>
+					<label for="input-hamburger" class="hamburger "></label>
+					<input type="checkbox" id="input-hamburger" hidden>
+					<ul class="menu">
+						<li><a href="/" class="menu-link">Home</a></li>
+						<li class="has-dropdown">
+							<a href="#" class="menu-link">Profile
+								<span class="arrow"></span>
+							</a>
+							<ul class="submenu">
+								<li><a href="/Bookings" class="menu-link">Bookings</a></li>
+								<li><a href="/User" class="menu-link">Edit Profile</a></li>
+								<li><a href="http://localhost:3000/SignOut" class="menu-link" formaction="http://localhost:3000/SignOut">Sign Out</a></li>
+							</ul>
+						</li>
+						<li><a href="/Contact" class="menu-link">Contact</a></li>
+					</ul>
+				</nav>
+
+				<div class="Edit User Details Form">
+
+					<div class = Information style="text-align: center">						
 						<br><br><br><br>
-							<h3>User Details</h3>
+							<h3>Edit User Details</h3>
 							<br>
 							<form id="UserDetails" method="get">
 							<div class="Signed-In-Container">
@@ -108,11 +115,6 @@
 
 							<section class="Signed-In-Section-12">
     						<button type="submit" id="SubmitButton" class="UserSignedInSubmitbtn" disabled>Confirm</button><br><br><br><br>
-							<label><b>Note : CONFRIM Button will be ENABLED when PASSWORDS match!</b></label><br>
-							</section>
-
-							<section class="Signed-In-Section-13">
-								<button id="SignOut" type="submit" class="UserSignOutbtn" formaction="http://localhost:3000/SignOut" >Sign Out</button><br><br><br><br>
 							</section>
 
 						</div>

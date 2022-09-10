@@ -11,17 +11,27 @@
 	<body>
 		<div class="container">
 
-			<div class="navbar">
-				<img src="./img/HSP Logo.png" class="HSP-logo">
-				<nav>
-					<ul id ="ListMenu">
-						<li>	<a href="Home Page.html">	Home </a></li>
-						<li class = "current">	<a href="Log In Page.html">	Log In	</a></li>
-						<li>	<a href="Contact Page.html">	Contact	</a></li>
-					</ul>
+			<nav class="navbar">
+				<div class="branding">
+					<img href="/" src="./img/HSP Logo.png" class="HSP-logo">
+				</div>
+				<label for="input-hamburger" class="hamburger "></label>
+				<input type="checkbox" id="input-hamburger" hidden>
+				<ul class="menu">
+					<li><a href="/" class="menu-link">Home</a></li>
+					<li class="has-dropdown">
+						<a href="#" class="menu-link">Profile
+							<span class="arrow"></span>
+						</a>
+						<ul class="submenu">
+							<li><a href="/Bookings" class="menu-link">Bookings</a></li>
+							<li><a href="/User" class="menu-link">Edit Profile</a></li>
+							<li><a href="http://localhost:3000/SignOut" class="menu-link" formaction="http://localhost:3000/SignOut">Sign Out</a></li>
+						</ul>
+					</li>
+					<li><a href="/Contact" class="menu-link">Contact</a></li>
+				</ul>
 			</nav>
-			<img src="./img/Hamburger Icon.png" class="menu-icon" onclick="dropdownmenu()">
-			</div>
 
 <!-- Calendly inline widget begin -->
 <div class="calendly-inline-widget" data-url="https://calendly.com/campusnurse456?hide_landing_page_details=1&hide_gdpr_banner=1&primary_color=24a4ac" style="min-width:320px;height:630px;"></div>

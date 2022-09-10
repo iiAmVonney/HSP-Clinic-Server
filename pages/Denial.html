@@ -12,22 +12,18 @@
 
 		<header>
 			<div class="container">
-				<div class="navbar">
-
-					<a href="/">
+				<nav class="navbar">
+					<div class="branding">
 						<img href="/" src="./img/HSP Logo.png" class="HSP-logo">
-						</a>
-		
-				<nav>
-					<ul id ="ListMenu">
-					  <li>	<a href="/">	Home </a></li>
-					  <li class = "current">	<a href="/logIn">	Log In	</a></li>
-					  <li>	<a href="/Contact">	Contact	</a></li>
+					</div>
+					<label for="input-hamburger" class="hamburger "></label>
+					<input type="checkbox" id="input-hamburger" hidden>
+					<ul class="menu">
+						<li><a href="/" class="menu-link">Home</a></li>
+						<li><a href="/LogIn" class="menu-link">Log In</a></li>
+						<li><a href="/Contact" class="menu-link">Contact</a></li>
 					</ul>
-				  </nav>
-
-        <img src="./img/Hamburger Icon.png" class="menu-icon" onclick="dropdownmenu()">
-				</div>
+				</nav>
 
 
 				<div class="SignInForm">
