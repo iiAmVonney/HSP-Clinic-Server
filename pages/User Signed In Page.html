@@ -32,32 +32,36 @@
 						<button type="submit" class="UserSignedInRequestbtn">Request Appointment</button><br><br><br><br>
 							<h3>User Details</h3>
 							<br>
-							<form id="UserDetails" method="get">
+
+
+							<form id="UserDetails" method="POST" action="http://localhost:3000/User">
 							<div class="Signed-In-Container">
+
+								<input name="userId" id="inputId" type="text"  hidden/>
 
 								<section class="Signed-In-Section-1">
 								<label><b>Student Number : </b></label><br>
-								<input type="text" title="SignedInStudentNumber" placeholder="ST10101234" readonly/><br><br>
+								<input id="inputStudentNumber" type="text" title="SignedInStudentNumber" placeholder="ST10101234" readonly/><br><br>
 							</section>
 
 							<section class="Signed-In-Section-2">
 								<label><b>First Name : </b></label><br>
-								<input type="text" title="SignedInFirstName" placeholder="John" /><br><br>
+								<input name="first_name" id="inputFirstName" type="text" title="SignedInFirstName" /><br><br>
 							</section>
 
 							<section class="Signed-In-Section-3">
 								<label><b>Last Name : </b></label><br>
-								<input type="text" title="SignedInLastName" placeholder="Smith" /><br><br>
+								<input name="last_name" id="inputLastName" type="text" title="SignedInLastName" placeholder="Smith" /><br><br>
 							</section>
 
 							<section class="Signed-In-Section-4">
 								<label><b>Address : </b></label><br>
-								<input type="text" title="SignedInAddress" placeholder="144 Peter Road" /><br><br>
+								<input name="address" id="inputAddress" type="text" title="SignedInAddress" placeholder="144 Peter Road" /><br><br>
 							</section>
 
 							<section class="Signed-In-Section-5">
 								<label><b>Telephone Number : </b></label><br>
-								<input type="text" title="SignedInStudentCellNumber" placeholder="0721234567" /><br><br>
+								<input name="phone_number" id="inputPhoneNumber" type="text" title="SignedInStudentCellNumber" placeholder="0721234567" /><br><br>
 							</section>
 
 							<section class="Signed-In-Section-6">
@@ -65,35 +69,33 @@
 
 
 								<div class="radiogroup">
-  							<input class="radiogroup-input" type="radio" value="Option1" name="SignedInGender" id="Option1">
-								<label class="radiogroup-label" for="Option1">Male</label>
-
-								<input class="radiogroup-input" type="radio" value="Option2" name="SignedInGender" id="Option2">
-								<label class="radiogroup-label" for="Option2">Female</label>
-
-							  </div>
+									<input name="gender" class="radiogroup-input" type="radio" value="M" name="gender" id="Option1">
+									  <label class="radiogroup-label" for="Option1" style="text-align:center">Male</label>
+									  <input class="radiogroup-input" type="radio" value="F" name="gender" id="Option2">
+									  <label class="radiogroup-label" for="Option2" style="text-align:center">Female</label>
+								</div>
 
 
 							</section>
 
 							<section class="Signed-In-Section-7">
 								<label><b>Date of Birth : </b></label><br>
-								<input class="birthdate" type="date" title="SignedInDateOfBirth" placeholder="YYYY-MM-DD" data-date-split-input="true" /><br><br>
+								<input name="DOB" id="inputDOB" class="birthdate" type="date" title="SignedInDateOfBirth" placeholder="YYYY-MM-DD" data-date-split-input="true" /><br><br>
 							</section>
 
 							<section class="Signed-In-Section-8">
 								<label><b>Allergies : </b></label><br>
-								<input type="text" title="SignedInAllergies" placeholder="Pollen Allergy"/><br><br>
+								<input name="allergy" id="inputAllergies" type="text" title="SignedInAllergies" placeholder="Pollen Allergy"/><br><br>
 							</section>
 
 							<section class="Signed-In-Section-9">
 								<label><b>E-mail Address : </b></label><br>
-								<input type="text" title="SignedInEmail" placeholder="ST10101234@imconnect.edu.za" /><br><br>
+								<input name="email" id="InputEmail" type="text" title="SignedInEmail" placeholder="ST10101234@imconnect.edu.za" /><br><br>
 							</section>
 
 							<section class="Signed-In-Section-10">
 								<label><b>Password : </b></label><br>
-								<input type="password" id="password" title="SignedInPassword" placeholder="********" /><br><br>
+								<input name="password" type="password" id="password" title="SignedInPassword" placeholder="********" /><br><br>
 								<input type="checkbox" onclick="ShowPassword()">Show Password<br><br>
 							</section>
 
@@ -145,6 +147,8 @@ document.addEventListener("DOMContentLoaded", function(){
     // document.getElementById("LogIn")
     // .addEventListener("submit", handleSignIn);
 
+	
+
     var cookies = document.cookie.split('; ');
 
     toastr.options = {
@@ -170,10 +174,86 @@ document.addEventListener("DOMContentLoaded", function(){
         
         if(pairs[0]=='user-name'){
             
-			toastr.success('Welcome back, '+pairs[1]+'!');
+			
                 
         }
+
+		switch (pairs[0]) {
+			case 'user-name':
+
+				document.getElementById("inputFirstName").value = pairs[1].replaceAll('%20',' ');
+
+				toastr.success('Welcome back, '+pairs[1]+'!');	
+
+			break;
+
+			case 'last_name':
+
+				document.getElementById("inputLastName").value = pairs[1].replaceAll('%20',' ');
+				
+			break;
+
+			case 'address':
+
+				document.getElementById("inputAddress").value = pairs[1].replaceAll('%20',' ');
+				
+			break;
+
+			case 'phone_number':
+
+				document.getElementById("inputPhoneNumber").value = pairs[1].replaceAll('%20',' ');
+				
+			break;
+
+			case 'gender':
+
+				if(pairs[1].replace('%20',' ')=="M"){
+					document.getElementById("Option1").checked = true;
+
+				}else{
+					document.getElementById("Option2").checked = true;
+				}
+	
+			break;
+
+			case 'DOB':
+
+				document.getElementById("inputDOB").value = pairs[1].replaceAll('%3A',':').substring(0,10);
+				
+			break;
+
+			case 'allergies':
+
+				document.getElementById("inputAllergies").value = pairs[1].replaceAll('%20',':');
+				
+			break;
+
+			case 'email':
+
+				document.getElementById("inputEmail").value = pairs[1].replaceAll('%20',':');
+				
+			break;
+
+			case 'student_number':
+
+				document.getElementById("inputStudentNumber").placeholder = pairs[1].replaceAll('%20',':');
+				
+			break;
+
+			case 'userId':
+
+				document.getElementById("inputId").value = pairs[1].replaceAll('%20',':');
+				
+			break;
+
+
+			default:
+				break;
+		}
+
     });
+
+	
 
 		
 
@@ -216,6 +296,8 @@ function confirmSignOut() {
          if (confirmSignOut) {
 					 /*Action For CONFRIMING SIGN OUT back to HOME PAGE*/
 
+					 document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:01 GMT;"
+					 fetch("localhost:3000/");
 			
 			console.log('signed out');
 
