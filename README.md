@@ -16,46 +16,48 @@ make sure to download the following
 2) Create a new schema and name it as you wish (e.g. hsp_group).
 3) Set the created schema to be the default and then create the following tables by running the associated commands below.
 4) Create addresses table: 
-  <br/>`CREATE TABLE ‘addresses’ (
-  `<br/>`‘id’ int NOT NULL AUTO_INCREMENT,
-  `<br/>`‘address_description’ longtext NOT NULL,
-  `<br/>`PRIMARY KEY (‘id’)
+  <br/>`CREATE TABLE addresses (
+  `<br/>`id int NOT NULL AUTO_INCREMENT,
+  `<br/>`address_description longtext NOT NULL,
+  `<br/>`PRIMARY KEY (id)
   `<br/>`) ENGINE=InnoDB AUTO_INCREMENT=97 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;`
 3) Create allergies table:
-   <br/>`CREATE TABLE ‘allergies’ (
-  `<br/>`‘id’ int NOT NULL AUTO_INCREMENT,
-  `<br/>`‘allergy_description’ longtext,
-  `<br/>`PRIMARY KEY (‘id’),
-  `<br/>` UNIQUE KEY ‘id_UNIQUE’ (‘id’)
+   <br/>`CREATE TABLE allergies (
+  `<br/>`id int NOT NULL AUTO_INCREMENT,
+  `<br/>`allergy_description longtext,
+  `<br/>`PRIMARY KEY (id),
+  `<br/>` UNIQUE KEY id_UNIQUE (id)
   `<br/>`) ENGINE=InnoDB AUTO_INCREMENT=114 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;`
 3) Create user_verifications table:
-   <br/>`CREATE TABLE ‘user_verifications’ (
-  `<br/>`‘id’ bigint NOT NULL AUTO_INCREMENT,
-  `<br/>`‘user_id’ bigint NOT NULL,
-  `<br/>`‘unique_string’ varchar(80) NOT NULL,
-  `<br/>`PRIMARY KEY (‘id’),
-  `<br/>`UNIQUE KEY ‘user_id_UNIQUE’ (‘user_id’),
-  `<br/>`UNIQUE KEY ‘unique_string_UNIQUE’ (‘unique_string’)
+   <br/>`CREATE TABLE user_verifications (
+  `<br/>`id bigint NOT NULL AUTO_INCREMENT,
+  `<br/>`user_id bigint NOT NULL,
+  `<br/>`unique_string varchar(80) NOT NULL,
+  `<br/>`PRIMARY KEY (id),
+  `<br/>`UNIQUE KEY user_id_UNIQUE (user_id),
+  `<br/>`UNIQUE KEY unique_string_UNIQUE (unique_string)
   `<br/>`) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;`
 4) create users table:
-   <br/>`CREATE TABLE ‘users’ ( 
-  `<br/>`‘id’ bigint NOT NULL AUTO_INCREMENT,
-  `<br/>`‘first_name’ varchar(45) NOT NULL,
-  `<br/>`‘last_name’ varchar(45) NOT NULL,
-  `<br/>`‘student_number’ varchar(13) NOT NULL,
-  `<br/>`‘email’ varchar(50) NOT NULL,
-  `<br/>`‘password’ varchar(80) NOT NULL,
-  `<br/>`‘phone_number’ varchar(13) NOT NULL,
-  `<br/>`‘allergies’ varchar(255) DEFAULT NULL,
-  `<br/>`‘address’ varchar(255) DEFAULT NULL,
-  `<br/>`‘gender’ char(1) DEFAULT NULL,
-  `<br/>`‘DOB’ date DEFAULT NULL,
-  `<br/>`‘validated’ int NOT NULL DEFAULT '0',
-  `<br/>`PRIMARY KEY (‘id’),
-  `<br/>`UNIQUE KEY ‘id’ (‘id’),
-  `<br/>`UNIQUE KEY ‘email’ (‘email’),
-  `<br/>`UNIQUE KEY ‘student_number’ (‘student_number’)
+   <br/>`CREATE TABLE users ( 
+  `<br/>`id bigint NOT NULL AUTO_INCREMENT,
+  `<br/>`first_name varchar(45) NOT NULL,
+  `<br/>`last_name varchar(45) NOT NULL,
+  `<br/>`student_number varchar(13) NOT NULL,
+  `<br/>`email varchar(50) NOT NULL,
+  `<br/>`password varchar(80) NOT NULL,
+  `<br/>`phone_number varchar(13) NOT NULL,
+  `<br/>`allergies varchar(255) DEFAULT NULL,
+  `<br/>`address varchar(255) DEFAULT NULL,
+  `<br/>`gender char(1) DEFAULT NULL,
+  `<br/>`DOB date DEFAULT NULL,
+  `<br/>`validated int NOT NULL DEFAULT 0,
+  `<br/>`PRIMARY KEY (id),
+  `<br/>`UNIQUE KEY id (id),
+  `<br/>`UNIQUE KEY email (email),
+  `<br/>`UNIQUE KEY student_number (student_number)
   `<br/>`) ENGINE=InnoDB AUTO_INCREMENT=96 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;`
+
+
 
 ## Step 2 - Setting up the Environment variables (.env)
 
