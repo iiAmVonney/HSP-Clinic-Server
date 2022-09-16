@@ -53,6 +53,7 @@
   white-space: nowrap;
   padding: 1.5em 0;
   min-width: 16em;
+  z-index: 99;
 
   /* hides the submenus */
   opacity: 0;
