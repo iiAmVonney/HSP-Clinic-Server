@@ -244,7 +244,8 @@ app.get('/verify/:userId/:uinqueString', (req, res)=>{
     connection.query("SELECT * FROM user_verifications where user_id = ?", userId, (error, results, fields)=>{
         if (error) 
         {
-            console.log(err);
+            throw error
+            console.log(error);
             res.sendStatus(500);
             return;
         }
@@ -362,7 +363,7 @@ app.post('/Login', (req, res) => {
 
                     res.cookie('token', token,{httpOnly:false, maxAge:300000});
                     console.log("Token created!");
-                    res.redirect('/User');
+                    res.redirect('/Bookings');
                     
                     
                  });
@@ -493,5 +494,130 @@ app.get('/Recovery', (req, res) =>{
 
     res.sendFile(path.join(__dirname,'./pages/Forgot Password.html'))
 
+})
+
+app.post('/Recovery', (req, res) =>{
+
+    // res.sendFile(path.join(__dirname,'./pages/Forgot Password.html'))
+
+
+    connection.query("SELECT count(*) as count, id FROM users WHERE email = ?",req.body.email, (error, results, feilds)=>{
+
+        if (results[0].count == 0){
+            return;
+        }
+
+
+        const currentUrl = "http://localhost:3000/";
+        const uniqueString = uuidv4() + results[0].id;
+        
+        const url = currentUrl + "Reset/" + results[0].id + "/" + uniqueString;
+        console.log('url:',url);
+        console.log('email:',req.body.email);
+        console.log('id:',results[0].id);
+    
+        //create mail
+        const msg = {
+            "personalizations": [{
+                    "to": [{
+                            "email": req.body.email
+                        }],
+                        "dynamic_template_data": {
+                            "link": url
+                        }
+                    }
+                ],
+                "from": {
+                    "email": "nvonderbecke@gmail.com"
+                    },
+                "template_id": "d-d235a4fb4cf840e5bdeb328634a690d4"
+        }
+    
+        //hash the unique verification string
+        const hashedUniqueString = bcrypt.hashSync(uniqueString, 10);
+    
+        connection.query('INSERT INTO user_verifications(user_id, unique_string) values(?,?)', [results[0].id, hashedUniqueString], function (error, results, fields)
+        {
+            if (error) 
+            {
+                console.log('There was an issue inserting the recovery record into the DB!');
+                res.status(500).json({
+                    message:'There was an issue inserting the recovery record into the DB!',
+                    status: 500
+                });
+                return;
+            }
+    
+    
+            //send user mail to verifiy
+            sgMail.send(msg)
+            .then(() => console.log('Mail sent successfully (RESET)'))
+            .catch(error => {
+            console.error(error);
+            
+            res.status(500).json({
+                message:'There was an issue sending the verification mail to the user!',
+                status: 500
+            });
+            return;
+    
+            });
+    
+        });
+
+
+
+
+    });
+
+
+
+})
+
+app.get('/Reset/:userId/:uinqueString', (req, res) =>{
+
+    let {userId, uinqueString} = req.params;
+
+    connection.query("SELECT * FROM user_verifications where user_id = ?", userId, (error, results, fields)=>{
+        if (error) 
+        {
+            console.log(error);
+            res.sendStatus(500);
+            return;
+        }
+        console.log('UV: ',results[0]);
+        console.log('hashed Unique string',results[0]['unique_string']);
+        const uvID = results[0]['id'];
+        console.log('id before (uv)',uvID);
+        if (bcrypt.compareSync(uinqueString,results[0]['unique_string']))
+        {
+            //validation was succesful
+            console.log('validation was succesful');
+            connection.query("DELETE from user_verifications where id = ?", uvID, ()=>{
+                if (error) 
+                {
+                    console.log(error);
+                    res.sendStatus(500);
+                    return;
+                }
+                console.log('GOING TO VERIFY (INSCOPE)');
+            });
+
+
+            res.sendFile(path.join(__dirname,'./pages/Confirm Forgot Password.html'))
+
+        }else{
+            //else serve up un unsuccessful page
+            console.log('validation was UNsuccesful');
+            res.redirect('/Denied');
+        }
+
+    });
+
+
+})
+
+app.post('/Reset', (req, res) =>{
+    
 })
 
