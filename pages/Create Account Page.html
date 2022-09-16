@@ -16,19 +16,18 @@
 
 		<header>
 			<div class="container">
-				<div class="navbar">
-					<a href="/">
+				<nav class="navbar">
+					<div class="branding">
 						<img href="/" src="./img/HSP Logo.png" class="HSP-logo">
-						</a>
-		<nav>
-						<ul id ="ListMenu">
-						  <li>	<a href="/">	Home </a></li>
-						  <li class = "current">	<a href="/logIn">	Log In	</a></li>
-						  <li>	<a href="/Contact">	Contact	</a></li>
-						</ul>
-					  </nav>
-        	<img src="./img/Hamburger Icon.png" class="menu-icon" onclick="dropdownmenu()">
-				</div>
+					</div>
+					<label for="input-hamburger" class="hamburger "></label>
+					<input type="checkbox" id="input-hamburger" hidden>
+					<ul class="menu">
+						<li><a href="/" class="menu-link">Home</a></li>
+						<li><a href="/LogIn" class="menu-link">Log In</a></li>
+						<li><a href="/Contact" class="menu-link">Contact</a></li>
+					</ul>
+				</nav>
 
 					<div class = Information>
 						<h2>Create Your Account</h2><br>
@@ -87,13 +86,13 @@
 
 									<section class="Sign-In-Section-10">
 										<label><b>Password : </b></label><br>
-										<input name="password" type="password" id="password" title="CreateAccountPassword" placeholder="********" required/><br><br>
+										<input name="password" type="password" id="password" title="CreateAccountPassword" placeholder="********"  oninput="ValidatePasswords()"/><br><br>
 										<input type="checkbox" onclick="ShowPassword()">Show Password<br><br>
 									</section>
 
 									<section class="Sign-In-Section-11">
 										<label><b>Confirm Password : </b></label><br>
-										<input type="password" id="passwordconfirm" title="CreateAccountConfirmPassword" placeholder="********" required/><br><br>
+										<input type="password" id="passwordconfirm" title="CreateAccountConfirmPassword" placeholder="********" required oninput="ValidatePasswords()"/><br><br>
 										<input type="checkbox" onclick="ShowPasswordConfirm()">Show Password<br><br>
 									</section>
 
@@ -102,7 +101,7 @@
 									</section>
 
 									<section class="Sign-In-Section-13">
-    								<button type="submit" class="CreateAccountSubmitbtn">Create</button><br><br>
+    								<button type="submit" id="SubmitButton" class="CreateAccountSubmitbtn" disabled>Create</button><br><br>
 									</section>
 							</div>
 						</form>
@@ -150,6 +149,19 @@ x.type = "text";
 } else {
 x.type = "password";
 }
+}
+
+function ValidatePasswords()
+{
+	var x = document.getElementById("password").value;
+	var y = document.getElementById("passwordconfirm").value;
+	// If Not same return False.
+  if (x != y)
+	{
+		document.getElementById("SubmitButton").disabled = true;
+  }else{
+		document.getElementById("SubmitButton").disabled = false;
+	}
 }
 	</script>
 

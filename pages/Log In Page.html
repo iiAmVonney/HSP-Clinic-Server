@@ -17,22 +17,19 @@
 
 		<header>
 			<div class="container">
-				<div class="navbar">
 
-				<a href="/">
-				<img href="/" src="./img/HSP Logo.png" class="HSP-logo">
-				</a>
-				
-				<nav>
-					<ul id ="ListMenu">
-					  <li>	<a href="/">	Home </a></li>
-					  <li class = "current">	<a href="/logIn">	Log In	</a></li>
-					  <li>	<a href="/Contact">	Contact	</a></li>
+				<nav class="navbar">
+					<div class="branding">
+						<img href="/" src="./img/HSP Logo.png" class="HSP-logo">
+					</div>
+					<label for="input-hamburger" class="hamburger "></label>
+					<input type="checkbox" id="input-hamburger" hidden>
+					<ul class="menu">
+						<li><a href="/" class="menu-link">Home</a></li>
+						<li><a href="/LogIn" class="menu-link">Log In</a></li>
+						<li><a href="/Contact" class="menu-link">Contact</a></li>
 					</ul>
-				  </nav>
-
-        <img src="./img/Hamburger Icon.png" class="menu-icon" onclick="dropdownmenu()">
-				</div>
+				</nav>
 
 
 				<div class="SignInForm">
@@ -43,14 +40,16 @@
 							<br>
 
 							<form id="LogIn" method="POST" action="http://localhost:3000/Login">
-								<label><b>Student Number : </b></label><br>
+								<label><b>Student Email : </b></label><br>
 								<input name="email" type="text" title="LogInEmail" placeholder="ST10101234@imconnect.co.za" required/><br><br>
 								<label><b>Password : </b></label><br>
 								<input name="password" type="password" id="SignInpassword" title="LogInPassword" placeholder="********" required/><br><br>
 								<input type="checkbox" onclick="ShowPassword()">Show Password<br><br>
     						<button type="submit" class="LogInbtn">Login</button><br><br>
 
+
     						<a class="ForgotPassword" href="/Recovery">Forgot Password?</a>
+
 								<br><br>
 								Create an Account:
 								<br>
