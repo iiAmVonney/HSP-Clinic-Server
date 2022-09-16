@@ -484,3 +484,8 @@ app.get('/Register', (req, res)=>{
     res.sendFile(path.join(__dirname,'./pages/Create Account Page.html'))
 });
 
+app.get('/Recovery', (req, res) =>{
+
+    res.sendFile(path.join(__dirname,'./pages/Forgot Password.html'))
+
+})
