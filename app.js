@@ -29,7 +29,7 @@ const connection  = mysql.createConnection({
 
 
 app.listen(3000, () => {
-    console.log("Server is runnin on port 3000");
+    console.log("Server is runnin on http://localhost:3000/");
 });
 
 app.use(
@@ -129,8 +129,8 @@ app.post('/SignUp', (req, res)=>{
                             email:  req.body.email,
                             password: hash,
                             phone_number: req.body.phone_number,
-                            allergies: foreignKeys.allergyId,
-                            address: foreignKeys.allergyId,
+                            allergies: req.body.allergies,
+                            address: req.body.address,
                             gender: req.body.gender,
                             DOB: req.body.DOB,
                             validated: 0
@@ -309,7 +309,7 @@ app.post('/Login', (req, res) => {
         };
         
        //check is user matching email exists
-        connection.query('SELECT count(*) as count, id, password, validated, email, first_name as name FROM users WHERE email = ?', [payload.email] , function (error, results, fields) {
+        connection.query('SELECT count(*) as count, id, password, validated, email, first_name, last_name, student_number, phone_number, allergies, address, gender, DOB FROM users WHERE email = ?', [payload.email] , function (error, results, fields) {
             if (error) 
             {
                 throw error;
@@ -355,7 +355,9 @@ app.post('/Login', (req, res) => {
                      return;
                  }
 
-                 jwt.sign({userId:results[0].id, email:results[0].email, name:results[0].name},process.env.TOKEN_SECRET, {expiresIn:"1h"},function(error, token) {
+
+// [results[0].id, student_number: results[0].student_number, name: results[0].first_name, last_name: results[0].last_name, email: results[0].email, phone_number: results[0].phone_number, allergies: results[0].allergies, address: results[0].address, gender: results[0].gender, DOB: results[0].DOB]
+                 jwt.sign({userId:results[0].id, student_number: results[0].student_number, name: results[0].first_name, last_name: results[0].last_name, email: results[0].email, phone_number: results[0].phone_number, allergies: results[0].allergies, address: results[0].address, gender: results[0].gender, DOB: results[0].DOB},process.env.TOKEN_SECRET, {expiresIn:"1h"},function(error, token) {
                     if (error) throw error;
 
                     res.cookie('token', token,{httpOnly:false, maxAge:300000});
@@ -387,7 +389,16 @@ function validate(req,res,next){
             return;
         } 
 
-        res.cookie('user-name', user.name, {httpOnly:false, maxAge:3000})
+        res.cookie('userId', user.userId, {httpOnly:false, maxAge:3000});
+        res.cookie('student_number', user.student_number, {httpOnly:false, maxAge:3000});
+        res.cookie('user-name', user.name, {httpOnly:false, maxAge:3000});
+        res.cookie('last_name', user.last_name, {httpOnly:false, maxAge:3000});
+        res.cookie('address', user.address, {httpOnly:false, maxAge:3000});
+        res.cookie('phone_number', user.phone_number, {httpOnly:false, maxAge:3000});
+        res.cookie('gender', user.gender, {httpOnly:false, maxAge:3000});
+        res.cookie('DOB', user.DOB, {httpOnly:false, maxAge:3000});
+        res.cookie('allergies', user.allergies, {httpOnly:false, maxAge:3000});
+        res.cookie('email', user.email, {httpOnly:false, maxAge:3000});
 
         next();
 
@@ -399,7 +410,42 @@ app.get('/User', validate, (req,res)=>{
     console.log('here: /User');
     
     res.sendFile(path.join(__dirname,'./pages/User Signed In Page.html'));
- })
+});
+
+app.post('/User', validate, (req,res)=>{
+    console.log('(POST) payload:'+req.body.first_name);
+
+    const hash =  bcrypt.hashSync(req.body.password, 10);
+
+    const payload = {
+
+        // id: req.body.userId,
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        email: req.body.email,
+        password: hash,
+        phone_number: req.body.phone_number,
+        allergies: req.body.allergy,
+        address: req.body.address,
+        gender: req.body.gender,
+        DOB: req.body.DOB
+
+    }
+
+    console.log(payload);
+
+    connection.query("UPDATE users SET ? where id = ?", [payload, req.body.userId], (error, results, fields) =>{
+        if(error){
+            throw error;
+        }
+
+        console.log("worked?");
+
+    });
+    
+    res.redirect('/');
+    
+});
 
 
 app.get('/',express.static('public'),(req, res)=>{
@@ -438,6 +484,14 @@ app.get('/Register', (req, res)=>{
     res.sendFile(path.join(__dirname,'./pages/Create Account Page.html'))
 });
 
+
 app.get('/Bookings', validate, (req, res)=>{
     res.sendFile(path.join(__dirname,'./pages/Bookings Page.html'))
 });
+
+app.get('/Recovery', (req, res) =>{
+
+    res.sendFile(path.join(__dirname,'./pages/Forgot Password.html'))
+
+})
+
