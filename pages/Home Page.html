@@ -84,7 +84,7 @@
 	<script>
 
 	  var listmenu = document.getElementById("ListMenu");
-	  listmenu.style.maxHeight="0px";
+	//   listmenu.style.maxHeight="0px";
 
 	  function dropdownmenu(){
 	    if(listmenu.style.maxHeight=="0px")
@@ -128,6 +128,80 @@ cookies.forEach(cookie => {
 
 			toastr.success('An email has been sent to your account. Please verify before login in.');
 		}
+
+		if(pairs[1]=='reset')
+		{
+			toastr.options = {
+				"closeButton": true,
+				"debug": false,
+				"newestOnTop": false,
+				"progressBar": true,
+				"preventDuplicates": false,
+				"onclick": null,
+				"showDuration": "100",
+				"hideDuration": "1000",
+				"timeOut": "5000",
+				"extendedTimeOut": "1000",
+				"showEasing": "swing",
+				"hideEasing": "linear",
+				"showMethod": "show",
+				"hideMethod": "hide"
+			};
+
+
+			toastr.success('An email has been sent to your inbox with a link to reset your password.');
+		}
+
+
+	}
+
+	if(pairs[0]=='reset'){
+		if(pairs[1]=='success')
+		{
+			toastr.options = {
+				"closeButton": true,
+				"debug": false,
+				"newestOnTop": false,
+				"progressBar": true,
+				"preventDuplicates": false,
+				"onclick": null,
+				"showDuration": "100",
+				"hideDuration": "1000",
+				"timeOut": "5000",
+				"extendedTimeOut": "1000",
+				"showEasing": "swing",
+				"hideEasing": "linear",
+				"showMethod": "show",
+				"hideMethod": "hide"
+			};
+
+
+			toastr.success('Your password has been reset succesfuly!');
+		}
+
+		if(pairs[1]=='unsuccess')
+		{
+			toastr.options = {
+                    "closeButton": true,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": true,
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": "100",
+                    "hideDuration": "1000",
+                    "timeOut": "5000",
+                    "extendedTimeOut": "1000",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "show",
+                    "hideMethod": "hide"
+                };
+
+
+			toastr.success('There was a problem resetting your password. Please try again.');
+		}
+
 
 	}
 });

@@ -347,13 +347,10 @@ app.post('/Login', (req, res) => {
                  if(!pass){
                      console.log("Paswors DO NOT MATCH");
 
-                     res.cookie('message', 'Email and password does not match!')
+                     res.cookie('message', 'incorrect')
 
-                     res.status(401).json({
-                        message: 'Email and password does not match!',
-                        status:403
-                     });
-                     return;
+                     res.redirect('/Login');
+                    
                  }
 
 
@@ -536,10 +533,30 @@ app.post('/Recovery', (req, res) =>{
         //hash the unique verification string
         const hashedUniqueString = bcrypt.hashSync(uniqueString, 10);
     
-        connection.query('INSERT INTO user_verifications(user_id, unique_string) values(?,?)', [results[0].id, hashedUniqueString], function (error, results, fields)
+        const obj = {
+            user_id: results[0].id,
+            unique_string: hashedUniqueString
+        }
+        console.log("user_id "+results[0].id);
+        console.log("unique_string "+ hashedUniqueString);
+
+        connection.query("SELECT COUNT(*) AS count, id FROM user_resets where user_id = ?", results[0].id, (error, userResult, feilds)=>{
+
+            if(userResult[0]["count"] > 0)
+            {
+                connection.query("DELETE FROM users WHERE id = ?", userResult[0].id, (error)=>{
+                    if (error)
+                    throw error
+                })
+            }
+
+        });
+
+        connection.query('INSERT INTO user_resets(user_id, unique_string) values(?,?)', [results[0].id, hashedUniqueString], function (error, results, fields)
         {
             if (error) 
             {
+                throw error;
                 console.log('There was an issue inserting the recovery record into the DB!');
                 res.status(500).json({
                     message:'There was an issue inserting the recovery record into the DB!',
@@ -563,22 +580,26 @@ app.post('/Recovery', (req, res) =>{
     
             });
     
+            res.cookie("message", "reset",{httpOnly:false, maxAge:3000})
+            res.redirect('/')
         });
 
-
-
-
+        
     });
 
 
 
+});
+
+app.get('/Reset', (req, res)=>{
+    res.sendFile(path.join(__dirname,'./pages/Confirm Forgot Password.html'))
 })
 
 app.get('/Reset/:userId/:uinqueString', (req, res) =>{
 
     let {userId, uinqueString} = req.params;
 
-    connection.query("SELECT * FROM user_verifications where user_id = ?", userId, (error, results, fields)=>{
+    connection.query("SELECT * FROM user_resets where user_id = ?", userId, (error, results, fields)=>{
         if (error) 
         {
             console.log(error);
@@ -593,9 +614,10 @@ app.get('/Reset/:userId/:uinqueString', (req, res) =>{
         {
             //validation was succesful
             console.log('validation was succesful');
-            connection.query("DELETE from user_verifications where id = ?", uvID, ()=>{
+            connection.query("DELETE from user_resets where id = ?", uvID, (error, results, fields)=>{
                 if (error) 
                 {
+                    throw error;
                     console.log(error);
                     res.sendStatus(500);
                     return;
@@ -604,7 +626,7 @@ app.get('/Reset/:userId/:uinqueString', (req, res) =>{
             });
 
 
-            res.sendFile(path.join(__dirname,'./pages/Confirm Forgot Password.html'))
+            res.redirect('/Reset?userId='+results[0]['user_id']);
 
         }else{
             //else serve up un unsuccessful page
@@ -618,6 +640,26 @@ app.get('/Reset/:userId/:uinqueString', (req, res) =>{
 })
 
 app.post('/Reset', (req, res) =>{
+
+    console.log('body -palyoad');
+    console.log(req.body);
+
+    const hashedPass = bcrypt.hashSync(req.body.password,10);
+
+    console.log("reset pass: "+ hashedPass);
+
+    connection.query("UPDATE users set password = ? WHERE id = ?",[hashedPass, req.body.user_id], (error, results, feilds)=>{
+
+        if (error)
+        throw error;
+
+        res.cookie("reset", "success");
+        res.redirect("/");
+
+    } );
+
+        // res.cookie("reset", "success");
+        // res.redirect("/");
     
-})
+});
 

@@ -57,6 +57,11 @@ document.addEventListener("DOMContentLoaded", function(){
                 
                 toastr.error('Please verify your account first before login in!');
             
+            }else
+            if(pairs[1]=='incorrect'){
+                
+                toastr.error('Incorrect Login Credentials');
+            
             }
                 
         }
