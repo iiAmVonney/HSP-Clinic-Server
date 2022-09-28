@@ -296,6 +296,7 @@ app.get('/Verified',(req,res)=>{
 });
 
 app.get('/Login', (req, res) =>{
+    res.cookie("message", "",{httpOnly:false, maxAge:3000});
     res.sendFile(path.join(__dirname,'./pages/Log In Page.html'));
 })
 // SIGN INTO ACCOUNT
@@ -580,7 +581,7 @@ app.post('/Recovery', (req, res) =>{
     
             });
     
-            res.cookie("message", "reset",{httpOnly:false, maxAge:3000})
+            res.cookie("message", "reset",{httpOnly:false, maxAge:300})
             res.redirect('/')
         });
 
