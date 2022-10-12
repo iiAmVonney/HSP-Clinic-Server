@@ -296,7 +296,7 @@ app.get('/Verified',(req,res)=>{
 });
 
 app.get('/Login', (req, res) =>{
-    res.cookie("message", "",{httpOnly:false, maxAge:3000});
+    
     res.sendFile(path.join(__dirname,'./pages/Log In Page.html'));
 })
 // SIGN INTO ACCOUNT
@@ -328,7 +328,7 @@ app.post('/Login', (req, res) => {
             if(results[0].count < 1){
                 console.log('No user matching provided email! Either sign up, or try again.');
 
-                res.cookie('message', 'no-user',{httpOnly:false, maxAge:1500})
+                res.cookie('message', 'no-user',{httpOnly:false, maxAge:5000})
 
                 res.redirect('/Login');
             }else
@@ -348,9 +348,9 @@ app.post('/Login', (req, res) => {
                  if(!pass){
                      console.log("Paswors DO NOT MATCH");
 
-                     res.cookie('message', 'incorrect')
+                     res.cookie('message', 'incorrect',{httpOnly: false, maxAge: 30000});
 
-                     res.redirect('/Login');
+                     return res.redirect('/Login');
                     
                  }
 
@@ -544,9 +544,16 @@ app.post('/Recovery', (req, res) =>{
 
         connection.query("SELECT COUNT(*) AS count, id FROM user_resets where user_id = ?", results[0].id, (error, userResult, feilds)=>{
 
+            if(error)
+            {
+               return res.status(500).json({
+                    message:error
+                })
+            }
+
             if(userResult[0]["count"] > 0)
             {
-                connection.query("DELETE FROM users WHERE id = ?", userResult[0].id, (error)=>{
+                connection.query("DELETE FROM user_resets WHERE id = ?", userResult[0].id, (error)=>{
                     if (error)
                     throw error
                 })
@@ -655,7 +662,7 @@ app.post('/Reset', (req, res) =>{
         if (error)
         throw error;
 
-        res.cookie("reset", "success");
+        // res.cookie("reset", "success");
         res.redirect("/");
 
     } );

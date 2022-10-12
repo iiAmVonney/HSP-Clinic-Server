@@ -67,4 +67,5 @@ document.addEventListener("DOMContentLoaded", function(){
         }
     });
 
+    document.cookie = "message="
 });
