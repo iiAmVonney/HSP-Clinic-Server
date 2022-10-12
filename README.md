@@ -57,7 +57,7 @@ make sure to download the following
   `<br/>`UNIQUE KEY student_number (student_number)
   `<br/>`) ENGINE=InnoDB AUTO_INCREMENT=96 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;`
   4) create user_resets table:
-  `<br/>`CREATE TABLE user_resets (
+  <br/>`CREATE TABLE user_resets (
   `<br/>`id bigint NOT NULL AUTO_INCREMENT,
   `<br/>`user_id` bigint NOT NULL,
   `<br/>`unique_string` varchar(80) NOT NULL,
