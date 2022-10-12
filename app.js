@@ -502,7 +502,8 @@ app.post('/Recovery', (req, res) =>{
     connection.query("SELECT count(*) as count, id FROM users WHERE email = ?",req.body.email, (error, results, feilds)=>{
 
         if (results[0].count == 0){
-            return;
+            res.cookie("message", "reset",{httpOnly:false, maxAge:3000})
+            return res.redirect('/');
         }
 
 
@@ -557,7 +558,7 @@ app.post('/Recovery', (req, res) =>{
         {
             if (error) 
             {
-                throw error;
+                
                 console.log('There was an issue inserting the recovery record into the DB!');
                 res.status(500).json({
                     message:'There was an issue inserting the recovery record into the DB!',
@@ -581,7 +582,7 @@ app.post('/Recovery', (req, res) =>{
     
             });
     
-            res.cookie("message", "reset",{httpOnly:false, maxAge:300})
+            res.cookie("message", "reset",{httpOnly:false, maxAge:3000})
             res.redirect('/')
         });
 
