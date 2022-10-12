@@ -59,9 +59,9 @@ make sure to download the following
   4) create user_resets table:
   <br/>`CREATE TABLE user_resets (
   `<br/>`id bigint NOT NULL AUTO_INCREMENT,
-  `<br/>`user_id` bigint NOT NULL,
-  `<br/>`unique_string` varchar(80) NOT NULL,
-  `<br/>`PRIMARY KEY (`id`),
+  `<br/>`user_id bigint NOT NULL,
+  `<br/>`unique_string varchar(80) NOT NULL,
+  `<br/>`PRIMARY KEY (id),
   `<br/>`UNIQUE KEY unique_string_UNIQUE (unique_string)
   `<br/>`) ENGINE=InnoDB AUTO_INCREMENT=132 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;`
 
